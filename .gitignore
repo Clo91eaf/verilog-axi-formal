@@ -49,3 +49,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# ignore outputs
+formal/axil_ram*/

@@ -202,8 +202,8 @@ wire [$clog2(OUTSTAND_MAX)-1:0] f_axil_s_w_outstanding;// From f_slave of f_axil
                    // Parameters
                    .DATA_WIDTH          (DATA_WIDTH),
                    .ADDR_WIDTH          (ADDR_WIDTH),
-                   .STRB_WIDTH          (STRB_WIDTH),
-                   .OUTSTAND_MAX        (OUTSTAND_MAX))
+                   .STRB_WIDTH          (STRB_WIDTH)
+                   )
         f_slave(/*AUTOINST*/
                 // Outputs
                 .f_axil_s_aw_outstanding(f_axil_s_aw_outstanding[$clog2(OUTSTAND_MAX)-1:0]),

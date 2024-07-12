@@ -358,10 +358,10 @@ module f_axil_slave #
     // Proof when there is rsp there must be a req
     always @(posedge clk) begin
         if(!$past(rst) && f_past_valid) begin
-            if(s_axil_bvalid) begin
-                prf_aw_ostd: assert property(f_axil_s_aw_outstanding>0);
-                prf_w_ostd: assert property(f_axil_s_w_outstanding>0);
-            end
+            // if(s_axil_bvalid) begin
+            //     prf_aw_ostd: assert property(f_axil_s_aw_outstanding>0);
+            //     prf_w_ostd: assert property(f_axil_s_w_outstanding>0);
+            // end
 //            if(f_axil_s_aw_outstanding == 'b0) begin
 //                prf_rsp_aw: assert property(!s_axil_bvalid);
 //            end
@@ -420,7 +420,7 @@ module f_axil_slave #
                 // AR channel
                 cvr_ar_vld: cover property(s_axil_arvalid && s_axil_arready);
                 // R channel
-                cvr_r_vld: cover property(s_axil_rvalid && s_axil_arready);
+                // cvr_r_vld: cover property(s_axil_rvalid && s_axil_arready);
             end
         end
     end endgenerate

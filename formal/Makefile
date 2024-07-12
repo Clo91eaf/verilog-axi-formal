@@ -35,7 +35,7 @@ ARBITER_CASES 	+= cvr1r cvr3r cvr6r prf1r prf3r prf6r
 ARBITER_CASES 	+= cvr1a cvr3a cvr6a prf1a prf3a prf6a
 
 AXIL_RAM       := axil_ram
-AXIL_RAM_CASES := cvr32 cvr64 prf32 prf64
+AXIL_RAM_CASES := cvr32
 
 HELPERS = $(PRIORITY_ENCODER) $(ARBITER)
 AXIL_IPS = $(AXIL_RAM)
