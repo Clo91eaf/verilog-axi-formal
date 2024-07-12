@@ -1,11 +1,11 @@
 [tasks]
-cvr32       cvr     w32     r0
+cvr32     cvr   w32   r0
 
-cvr64       cvr     w64     r0
+cvr64     cvr   w64   r0
 
-prf32       prf     w32     r0
+prf32     prf   w32   r0
 
-prf64       prf     w64     r0
+prf64     prf   w64   r0
 
 [options]
 ~cvr: mode prove
@@ -28,11 +28,11 @@ cmd = ''
 
 cmd += "hierarchy -top f_axil_ram"
 if ("w32" in tags):
-        cmd += " -chparam  DATA_WIDTH 32"
-        cmd += " -chparam  ADDR_WIDTH 8"
+    cmd += " -chparam  DATA_WIDTH 32"
+    cmd += " -chparam  ADDR_WIDTH 8"
 elif ("w64" in tags):
-        cmd += " -chparam  DATA_WIDTH 64"
-        cmd += " -chparam  ADDR_WIDTH 8"
+    cmd += " -chparam  DATA_WIDTH 64"
+    cmd += " -chparam  ADDR_WIDTH 8"
 
 output(cmd)
 --pycode-end--

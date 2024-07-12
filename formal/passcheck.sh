@@ -20,6 +20,6 @@
 ##
 ## Sort these results to give them a consistent order
 ##
-find . -name FAIL    | sort
+find . -name FAIL  | sort
 find . -name UNKNOWN | sort
 find . -name ERROR   | sort

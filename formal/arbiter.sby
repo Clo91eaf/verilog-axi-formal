@@ -48,20 +48,20 @@ read -formal priority_encoder.v
 --pycode-begin--
 cmd = ''
 if ("high" in tags):
-    cmd += 'chparam -set LSB_PRIORITY "HIGH" f_arbiter\n'
+  cmd += 'chparam -set LSB_PRIORITY "HIGH" f_arbiter\n'
 
 if ("req" in tags):
-    cmd += 'chparam -set BLOCK "REQUEST" f_arbiter\n'
+  cmd += 'chparam -set BLOCK "REQUEST" f_arbiter\n'
 if ("ack" in tags):
-    cmd += 'chparam -set BLOCK "ACKNOWLEDGE" f_arbiter\n'
+  cmd += 'chparam -set BLOCK "ACKNOWLEDGE" f_arbiter\n'
 
 cmd += "hierarchy -top f_arbiter"
 if ("w1" in tags):
-        cmd += " -chparam  PORTS 1"
+    cmd += " -chparam  PORTS 1"
 if ("w3" in tags):
-        cmd += " -chparam  PORTS 3"
+    cmd += " -chparam  PORTS 3"
 if ("w6" in tags):
-        cmd += " -chparam  PORTS 6"
+    cmd += " -chparam  PORTS 6"
 output(cmd)
 --pycode-end--
 prep -top f_arbiter

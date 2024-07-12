@@ -29,83 +29,83 @@ THE SOFTWARE.
  */
 module f_axil_register #
 (
-    // Width of data bus in bits
-    parameter DATA_WIDTH = 32,
-    // Width of address bus in bits
-    parameter ADDR_WIDTH = 32,
-    // Width of wstrb (width of data bus in words)
-    parameter STRB_WIDTH = (DATA_WIDTH/8),
-    // AW channel register type
-    // 0 to bypass, 1 for simple buffer
-    parameter AW_REG_TYPE = 1,
-    // W channel register type
-    // 0 to bypass, 1 for simple buffer
-    parameter W_REG_TYPE = 1,
-    // B channel register type
-    // 0 to bypass, 1 for simple buffer
-    parameter B_REG_TYPE = 1,
-    // AR channel register type
-    // 0 to bypass, 1 for simple buffer
-    parameter AR_REG_TYPE = 1,
-    // R channel register type
-    // 0 to bypass, 1 for simple buffer
-    parameter R_REG_TYPE = 1
+  // Width of data bus in bits
+  parameter DATA_WIDTH = 32,
+  // Width of address bus in bits
+  parameter ADDR_WIDTH = 32,
+  // Width of wstrb (width of data bus in words)
+  parameter STRB_WIDTH = (DATA_WIDTH/8),
+  // AW channel register type
+  // 0 to bypass, 1 for simple buffer
+  parameter AW_REG_TYPE = 1,
+  // W channel register type
+  // 0 to bypass, 1 for simple buffer
+  parameter W_REG_TYPE = 1,
+  // B channel register type
+  // 0 to bypass, 1 for simple buffer
+  parameter B_REG_TYPE = 1,
+  // AR channel register type
+  // 0 to bypass, 1 for simple buffer
+  parameter AR_REG_TYPE = 1,
+  // R channel register type
+  // 0 to bypass, 1 for simple buffer
+  parameter R_REG_TYPE = 1
 )
 (
-    input  wire                     clk,
-    input  wire                     rst,
+  input  wire           clk,
+  input  wire           rst,
 
-    /*
-     * AXI lite slave interface
-     */
-    input  wire [ADDR_WIDTH-1:0]    s_axil_awaddr,
-    input  wire [2:0]               s_axil_awprot,
-    input  wire                     s_axil_awvalid,
-    output wire                     s_axil_awready,
-    input  wire [DATA_WIDTH-1:0]    s_axil_wdata,
-    input  wire [STRB_WIDTH-1:0]    s_axil_wstrb,
-    input  wire                     s_axil_wvalid,
-    output wire                     s_axil_wready,
-    output wire [1:0]               s_axil_bresp,
-    output wire                     s_axil_bvalid,
-    input  wire                     s_axil_bready,
-    input  wire [ADDR_WIDTH-1:0]    s_axil_araddr,
-    input  wire [2:0]               s_axil_arprot,
-    input  wire                     s_axil_arvalid,
-    output wire                     s_axil_arready,
-    output wire [DATA_WIDTH-1:0]    s_axil_rdata,
-    output wire [1:0]               s_axil_rresp,
-    output wire                     s_axil_rvalid,
-    input  wire                     s_axil_rready,
+  /*
+   * AXI lite slave interface
+   */
+  input  wire [ADDR_WIDTH-1:0]  s_axil_awaddr,
+  input  wire [2:0]         s_axil_awprot,
+  input  wire           s_axil_awvalid,
+  output wire           s_axil_awready,
+  input  wire [DATA_WIDTH-1:0]  s_axil_wdata,
+  input  wire [STRB_WIDTH-1:0]  s_axil_wstrb,
+  input  wire           s_axil_wvalid,
+  output wire           s_axil_wready,
+  output wire [1:0]         s_axil_bresp,
+  output wire           s_axil_bvalid,
+  input  wire           s_axil_bready,
+  input  wire [ADDR_WIDTH-1:0]  s_axil_araddr,
+  input  wire [2:0]         s_axil_arprot,
+  input  wire           s_axil_arvalid,
+  output wire           s_axil_arready,
+  output wire [DATA_WIDTH-1:0]  s_axil_rdata,
+  output wire [1:0]         s_axil_rresp,
+  output wire           s_axil_rvalid,
+  input  wire           s_axil_rready,
 
-    /*
-     * AXI lite master interface
-     */
-    output wire [ADDR_WIDTH-1:0]    m_axil_awaddr,
-    output wire [2:0]               m_axil_awprot,
-    output wire                     m_axil_awvalid,
-    input  wire                     m_axil_awready,
-    output wire [DATA_WIDTH-1:0]    m_axil_wdata,
-    output wire [STRB_WIDTH-1:0]    m_axil_wstrb,
-    output wire                     m_axil_wvalid,
-    input  wire                     m_axil_wready,
-    input  wire [1:0]               m_axil_bresp,
-    input  wire                     m_axil_bvalid,
-    output wire                     m_axil_bready,
-    output wire [ADDR_WIDTH-1:0]    m_axil_araddr,
-    output wire [2:0]               m_axil_arprot,
-    output wire                     m_axil_arvalid,
-    input  wire                     m_axil_arready,
-    input  wire [DATA_WIDTH-1:0]    m_axil_rdata,
-    input  wire [1:0]               m_axil_rresp,
-    input  wire                     m_axil_rvalid,
-    output wire                     m_axil_rready
+  /*
+   * AXI lite master interface
+   */
+  output wire [ADDR_WIDTH-1:0]  m_axil_awaddr,
+  output wire [2:0]         m_axil_awprot,
+  output wire           m_axil_awvalid,
+  input  wire           m_axil_awready,
+  output wire [DATA_WIDTH-1:0]  m_axil_wdata,
+  output wire [STRB_WIDTH-1:0]  m_axil_wstrb,
+  output wire           m_axil_wvalid,
+  input  wire           m_axil_wready,
+  input  wire [1:0]         m_axil_bresp,
+  input  wire           m_axil_bvalid,
+  output wire           m_axil_bready,
+  output wire [ADDR_WIDTH-1:0]  m_axil_araddr,
+  output wire [2:0]         m_axil_arprot,
+  output wire           m_axil_arvalid,
+  input  wire           m_axil_arready,
+  input  wire [DATA_WIDTH-1:0]  m_axil_rdata,
+  input  wire [1:0]         m_axil_rresp,
+  input  wire           m_axil_rvalid,
+  output wire           m_axil_rready
 );
 
-localparam F_OSTD_MAX       = 16;
+localparam F_OSTD_MAX     = 16;
 localparam F_REQ_STALL_MAX  = 16;
 localparam F_RSP_STALL_MAX  = 16;
-localparam F_DELAY_MAX      = 16;
+localparam F_DELAY_MAX    = 16;
 
 /*AUTOWIRE*/
 // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -120,338 +120,338 @@ wire [$clog2(F_OSTD_MAX)-1:0] f_axil_s_w_outstanding;// From f_slave of f_axil_s
 // ================
 // Help logic
 // ================
-    reg f_past_valid;
+  reg f_past_valid;
 
-        initial f_past_valid = 0;
-        always @(posedge clk)
-                f_past_valid <= 1;
+    initial f_past_valid = 0;
+    always @(posedge clk)
+        f_past_valid <= 1;
 
 
-    // Notes. 
-    // Since Yosys does not support for hierarchcial connections yet,
-    // cannot get buffered info directly from DUT
-    //
+  // Notes. 
+  // Since Yosys does not support for hierarchcial connections yet,
+  // cannot get buffered info directly from DUT
+  //
 
-//    wire [$clog2(F_OSTD_MAX)-1:0] f_aw_buffered;
-//    wire [$clog2(F_OSTD_MAX)-1:0] f_w_buffered;
-//    wire [$clog2(F_OSTD_MAX)-1:0] f_b_buffered;
-//    wire [$clog2(F_OSTD_MAX)-1:0] f_ar_buffered;
-//    wire [$clog2(F_OSTD_MAX)-1:0] f_r_buffered;
-//    generate
-//        if(AW_REG_TYPE>=1) begin
-//            assign f_aw_buffered = !rst && (s_axil_awready ? 'b0 : 'b1);
-//        end else begin
-//            assign f_aw_buffered = 'b0;
-//        end
-//        if(W_REG_TYPE>=1) begin
-//            assign f_w_buffered = !rst && (s_axil_wready ? 'b0 : 'b1);
-//        end else begin
-//            assign f_w_buffered = 'b0;
-//        end
-//        if(B_REG_TYPE>=1) begin
-//            assign f_b_buffered = !rst && (m_axil_bready ? 'b0 : 'b1);
-//        end else begin
-//            assign f_b_buffered = 'b0;
-//        end
+//  wire [$clog2(F_OSTD_MAX)-1:0] f_aw_buffered;
+//  wire [$clog2(F_OSTD_MAX)-1:0] f_w_buffered;
+//  wire [$clog2(F_OSTD_MAX)-1:0] f_b_buffered;
+//  wire [$clog2(F_OSTD_MAX)-1:0] f_ar_buffered;
+//  wire [$clog2(F_OSTD_MAX)-1:0] f_r_buffered;
+//  generate
+//    if(AW_REG_TYPE>=1) begin
+//      assign f_aw_buffered = !rst && (s_axil_awready ? 'b0 : 'b1);
+//    end else begin
+//      assign f_aw_buffered = 'b0;
+//    end
+//    if(W_REG_TYPE>=1) begin
+//      assign f_w_buffered = !rst && (s_axil_wready ? 'b0 : 'b1);
+//    end else begin
+//      assign f_w_buffered = 'b0;
+//    end
+//    if(B_REG_TYPE>=1) begin
+//      assign f_b_buffered = !rst && (m_axil_bready ? 'b0 : 'b1);
+//    end else begin
+//      assign f_b_buffered = 'b0;
+//    end
 //
-//        if(AR_REG_TYPE>=1) begin
-//            assign f_ar_buffered = !rst && (s_axil_arready ? 'b0 : 'b1);
-//        end else begin
-//            assign f_ar_buffered = 'b0;
-//        end
-//        if(R_REG_TYPE>=1) begin
-//            assign f_r_buffered = !rst && (m_axil_rready ? 'b0 : 'b1);
-//        end else begin
-//            assign f_r_buffered = 'b0;
-//        end
-//    endgenerate
+//    if(AR_REG_TYPE>=1) begin
+//      assign f_ar_buffered = !rst && (s_axil_arready ? 'b0 : 'b1);
+//    end else begin
+//      assign f_ar_buffered = 'b0;
+//    end
+//    if(R_REG_TYPE>=1) begin
+//      assign f_r_buffered = !rst && (m_axil_rready ? 'b0 : 'b1);
+//    end else begin
+//      assign f_r_buffered = 'b0;
+//    end
+//  endgenerate
 
-//    reg [$clog2(F_OSTD_MAX):0] f_aw_buffered;
-//    reg [$clog2(F_OSTD_MAX):0] f_w_buffered;
-//    reg [$clog2(F_OSTD_MAX):0] f_b_buffered;
-//    reg [$clog2(F_OSTD_MAX):0] f_ar_buffered;
-//    reg [$clog2(F_OSTD_MAX):0] f_r_buffered;
+//  reg [$clog2(F_OSTD_MAX):0] f_aw_buffered;
+//  reg [$clog2(F_OSTD_MAX):0] f_w_buffered;
+//  reg [$clog2(F_OSTD_MAX):0] f_b_buffered;
+//  reg [$clog2(F_OSTD_MAX):0] f_ar_buffered;
+//  reg [$clog2(F_OSTD_MAX):0] f_r_buffered;
 //
-//    always @(posedge clk) begin
-//        if(rst)begin
-//            f_aw_buffered <= 1'b0;
-//            f_w_buffered <= 1'b0;
-//            f_b_buffered <= 1'b0;
-//            f_ar_buffered <= 1'b0;
-//            f_r_buffered <= 1'b0;
-//        end else if(!$past(rst) && f_past_valid) begin
-//            // AW Channel
-//            if(AW_REG_TYPE>=1) begin
-//               if(!s_axil_awready)
-//                   f_aw_buffered <= 1'b1;
-//               else
-//                   f_aw_buffered <= 1'b0;
-//            end else begin
-//                f_aw_buffered <= 1'b0;
-//            end
-//            // W Channel
-//            if(W_REG_TYPE>=1) begin
-//                if(!s_axil_wready)
-//                    f_w_buffered <= 1'b1;
-//                else
-//                    f_w_buffered <= 1'b0;
-//            end else begin
-//                f_w_buffered <= 1'b0;
-//            end
-//            // B Channel
-//            if(B_REG_TYPE>=1) begin
-//                if(!m_axil_bready)
-//                    f_b_buffered <= 1'b1;
-//                else
-//                    f_b_buffered <= 1'b0;
-//            end else begin
-//                f_b_buffered <= 1'b0;
-//            end
+//  always @(posedge clk) begin
+//    if(rst)begin
+//      f_aw_buffered <= 1'b0;
+//      f_w_buffered <= 1'b0;
+//      f_b_buffered <= 1'b0;
+//      f_ar_buffered <= 1'b0;
+//      f_r_buffered <= 1'b0;
+//    end else if(!$past(rst) && f_past_valid) begin
+//      // AW Channel
+//      if(AW_REG_TYPE>=1) begin
+//         if(!s_axil_awready)
+//           f_aw_buffered <= 1'b1;
+//         else
+//           f_aw_buffered <= 1'b0;
+//      end else begin
+//        f_aw_buffered <= 1'b0;
+//      end
+//      // W Channel
+//      if(W_REG_TYPE>=1) begin
+//        if(!s_axil_wready)
+//          f_w_buffered <= 1'b1;
+//        else
+//          f_w_buffered <= 1'b0;
+//      end else begin
+//        f_w_buffered <= 1'b0;
+//      end
+//      // B Channel
+//      if(B_REG_TYPE>=1) begin
+//        if(!m_axil_bready)
+//          f_b_buffered <= 1'b1;
+//        else
+//          f_b_buffered <= 1'b0;
+//      end else begin
+//        f_b_buffered <= 1'b0;
+//      end
 //
-//            // AR Channel
-//            if(AR_REG_TYPE>=1) begin
-//                if(!s_axil_arready)
-//                    f_ar_buffered <= 1'b1;
-//                else
-//                    f_ar_buffered <= 1'b0;
-//            end else begin
-//                f_ar_buffered <= 1'b0;
-//            end
-//            // R Channel
-//            if(R_REG_TYPE>=1) begin
-//                if(!m_axil_rready)
-//                    f_r_buffered <= 1'b1;
-//                else
-//                    f_r_buffered <= 1'b0;
-//            end else begin
-//                f_r_buffered <= 1'b0;
-//            end
-//        end //if
-//    end //always
+//      // AR Channel
+//      if(AR_REG_TYPE>=1) begin
+//        if(!s_axil_arready)
+//          f_ar_buffered <= 1'b1;
+//        else
+//          f_ar_buffered <= 1'b0;
+//      end else begin
+//        f_ar_buffered <= 1'b0;
+//      end
+//      // R Channel
+//      if(R_REG_TYPE>=1) begin
+//        if(!m_axil_rready)
+//          f_r_buffered <= 1'b1;
+//        else
+//          f_r_buffered <= 1'b0;
+//      end else begin
+//        f_r_buffered <= 1'b0;
+//      end
+//    end //if
+//  end //always
 
 // ================
 // Assume properties
 // ================
-//    always @(posedge clk) begin
-//        if(!rst && f_past_valid) begin
-//            assume property(f_aw_buffered < 'd2);
-//            assume property(f_w_buffered < 'd2);
-//            assume property(f_b_buffered < 'd2);
-//            assume property(f_ar_buffered < 'd2);
-//            assume property(f_r_buffered < 'd2);
-//        end
+//  always @(posedge clk) begin
+//    if(!rst && f_past_valid) begin
+//      assume property(f_aw_buffered < 'd2);
+//      assume property(f_w_buffered < 'd2);
+//      assume property(f_b_buffered < 'd2);
+//      assume property(f_ar_buffered < 'd2);
+//      assume property(f_r_buffered < 'd2);
 //    end
+//  end
 // ================
 // Proof properties
 // ================
-//    always @(posedge clk) begin
-//        if(!rst && f_past_valid) begin
-//            dut_prf_aw_ostd: assert property(
-//                f_axil_s_aw_outstanding >= f_axil_m_aw_outstanding
-//            );
-//            dut_prf_w_ostd: assert property(
-//                f_axil_s_w_outstanding >= f_axil_m_w_outstanding
-//            );
-//            dut_prf_ar_ostd: assert property(
-//                f_axil_s_ar_outstanding >= f_axil_m_ar_outstanding
-//            );
-//        end
+//  always @(posedge clk) begin
+//    if(!rst && f_past_valid) begin
+//      dut_prf_aw_ostd: assert property(
+//        f_axil_s_aw_outstanding >= f_axil_m_aw_outstanding
+//      );
+//      dut_prf_w_ostd: assert property(
+//        f_axil_s_w_outstanding >= f_axil_m_w_outstanding
+//      );
+//      dut_prf_ar_ostd: assert property(
+//        f_axil_s_ar_outstanding >= f_axil_m_ar_outstanding
+//      );
 //    end
-//    always @(posedge clk) begin
-//        if(!$past(rst) && !rst && f_past_valid) begin
-//            // Both side outstanding transaction should be synced
-//            dut_prf_aw_ostd: assert property(
-//                {1'b0, $past(f_axil_s_aw_outstanding)} ==
-//                    ({1'b0, $past(f_axil_m_aw_outstanding)} + f_aw_buffered + f_b_buffered)
-//            );
-//            dut_prf_w_ostd: assert property(
-//                {1'b0, $past(f_axil_s_w_outstanding)} ==
-//                    ({1'b0, $past(f_axil_m_w_outstanding)} + f_w_buffered + f_b_buffered)
-//            );
-//            dut_prf_ar_ostd: assert property(
-//                {1'b0, $past(f_axil_s_ar_outstanding)} ==
-//                    ({1'b0, $past(f_axil_m_ar_outstanding)} + f_ar_buffered + f_r_buffered)
-//            );
-//        end
+//  end
+//  always @(posedge clk) begin
+//    if(!$past(rst) && !rst && f_past_valid) begin
+//      // Both side outstanding transaction should be synced
+//      dut_prf_aw_ostd: assert property(
+//        {1'b0, $past(f_axil_s_aw_outstanding)} ==
+//          ({1'b0, $past(f_axil_m_aw_outstanding)} + f_aw_buffered + f_b_buffered)
+//      );
+//      dut_prf_w_ostd: assert property(
+//        {1'b0, $past(f_axil_s_w_outstanding)} ==
+//          ({1'b0, $past(f_axil_m_w_outstanding)} + f_w_buffered + f_b_buffered)
+//      );
+//      dut_prf_ar_ostd: assert property(
+//        {1'b0, $past(f_axil_s_ar_outstanding)} ==
+//          ({1'b0, $past(f_axil_m_ar_outstanding)} + f_ar_buffered + f_r_buffered)
+//      );
 //    end
+//  end
 
-    // Outstanding counts inside axil_register
-    // For slave side,  ostd = slave_intf ostd - buff rsp
-    // For master side, ostd = master_intf ostd + buff req
-    reg [$clog2(F_OSTD_MAX)-1:0] s_aw_ostd, s_w_ostd, s_ar_ostd;
-    reg [$clog2(F_OSTD_MAX)-1:0] m_aw_ostd, m_w_ostd, m_ar_ostd;
+  // Outstanding counts inside axil_register
+  // For slave side,  ostd = slave_intf ostd - buff rsp
+  // For master side, ostd = master_intf ostd + buff req
+  reg [$clog2(F_OSTD_MAX)-1:0] s_aw_ostd, s_w_ostd, s_ar_ostd;
+  reg [$clog2(F_OSTD_MAX)-1:0] m_aw_ostd, m_w_ostd, m_ar_ostd;
 
-    always @(*) begin
-        if(!rst && f_past_valid) begin
-            // With skid buffer
-            s_aw_ostd = f_axil_s_aw_outstanding - (s_axil_bvalid?'b1:'b0) - (m_axil_bready?'b0:'b1);
-            m_aw_ostd = f_axil_m_aw_outstanding + (m_axil_awvalid?'b1:'b0) + (s_axil_awready?'b0:'b1);
+  always @(*) begin
+    if(!rst && f_past_valid) begin
+      // With skid buffer
+      s_aw_ostd = f_axil_s_aw_outstanding - (s_axil_bvalid?'b1:'b0) - (m_axil_bready?'b0:'b1);
+      m_aw_ostd = f_axil_m_aw_outstanding + (m_axil_awvalid?'b1:'b0) + (s_axil_awready?'b0:'b1);
 
-            s_w_ostd = f_axil_s_w_outstanding - (s_axil_bvalid?'b1:'b0) - (m_axil_bready?'b0:'b1);
-            m_w_ostd = f_axil_m_w_outstanding + (m_axil_wvalid?'b1:'b0) + (s_axil_wready?'b0:'b1);
+      s_w_ostd = f_axil_s_w_outstanding - (s_axil_bvalid?'b1:'b0) - (m_axil_bready?'b0:'b1);
+      m_w_ostd = f_axil_m_w_outstanding + (m_axil_wvalid?'b1:'b0) + (s_axil_wready?'b0:'b1);
 
-            s_ar_ostd = f_axil_s_ar_outstanding - (s_axil_rvalid?'b1:'b0) - (m_axil_rready?'b0:'b1);
-            m_ar_ostd = f_axil_m_ar_outstanding + (m_axil_arvalid?'b1:'b0) + (s_axil_arready?'b0:'b1);
-        end else begin
-            s_aw_ostd = 'b0;
-            m_aw_ostd = 'b0;
-            s_w_ostd  = 'b0;
-            m_w_ostd  = 'b0;
-            s_ar_ostd = 'b0;
-            m_ar_ostd = 'b0;
-        end
+      s_ar_ostd = f_axil_s_ar_outstanding - (s_axil_rvalid?'b1:'b0) - (m_axil_rready?'b0:'b1);
+      m_ar_ostd = f_axil_m_ar_outstanding + (m_axil_arvalid?'b1:'b0) + (s_axil_arready?'b0:'b1);
+    end else begin
+      s_aw_ostd = 'b0;
+      m_aw_ostd = 'b0;
+      s_w_ostd  = 'b0;
+      m_w_ostd  = 'b0;
+      s_ar_ostd = 'b0;
+      m_ar_ostd = 'b0;
     end
+  end
 
-    always @(posedge clk) begin
-        if(!$past(rst) && f_past_valid) begin
-            dut_prf_aw_ostd: assert property(s_aw_ostd == m_aw_ostd);
-            dut_prf_w_ostd:  assert property(s_w_ostd  == m_w_ostd);
-            dut_prf_ar_ostd: assert property(s_ar_ostd == m_ar_ostd);
-        end
+  always @(posedge clk) begin
+    if(!$past(rst) && f_past_valid) begin
+      dut_prf_aw_ostd: assert property(s_aw_ostd == m_aw_ostd);
+      dut_prf_w_ostd:  assert property(s_w_ostd  == m_w_ostd);
+      dut_prf_ar_ostd: assert property(s_ar_ostd == m_ar_ostd);
     end
+  end
 
 // ================
 // Cover properties
 // ================
-    always @(posedge clk) begin
-        if(!$past(rst) && f_past_valid) begin
-            dut_cvr_aw_ostd: cover property(s_aw_ostd == m_aw_ostd);
-            dut_cvr_w_ostd:  cover property(s_w_ostd  == m_w_ostd);
-            dut_cvr_ar_ostd: cover property(s_ar_ostd == m_ar_ostd);
-        end
+  always @(posedge clk) begin
+    if(!$past(rst) && f_past_valid) begin
+      dut_cvr_aw_ostd: cover property(s_aw_ostd == m_aw_ostd);
+      dut_cvr_w_ostd:  cover property(s_w_ostd  == m_w_ostd);
+      dut_cvr_ar_ostd: cover property(s_ar_ostd == m_ar_ostd);
     end
+  end
 
 
 // ================
 // Formal bench
 // ================
-    axil_register #(/*AUTOINSTPARAM*/
-                    // Parameters
-                    .DATA_WIDTH         (DATA_WIDTH),
-                    .ADDR_WIDTH         (ADDR_WIDTH),
-                    .STRB_WIDTH         (STRB_WIDTH),
-                    .AW_REG_TYPE        (AW_REG_TYPE),
-                    .W_REG_TYPE         (W_REG_TYPE),
-                    .B_REG_TYPE         (B_REG_TYPE),
-                    .AR_REG_TYPE        (AR_REG_TYPE),
-                    .R_REG_TYPE         (R_REG_TYPE))
-        dut(/*AUTOINST*/
-            // Outputs
-            .s_axil_awready             (s_axil_awready),
-            .s_axil_wready              (s_axil_wready),
-            .s_axil_bresp               (s_axil_bresp[1:0]),
-            .s_axil_bvalid              (s_axil_bvalid),
-            .s_axil_arready             (s_axil_arready),
-            .s_axil_rdata               (s_axil_rdata[DATA_WIDTH-1:0]),
-            .s_axil_rresp               (s_axil_rresp[1:0]),
-            .s_axil_rvalid              (s_axil_rvalid),
-            .m_axil_awaddr              (m_axil_awaddr[ADDR_WIDTH-1:0]),
-            .m_axil_awprot              (m_axil_awprot[2:0]),
-            .m_axil_awvalid             (m_axil_awvalid),
-            .m_axil_wdata               (m_axil_wdata[DATA_WIDTH-1:0]),
-            .m_axil_wstrb               (m_axil_wstrb[STRB_WIDTH-1:0]),
-            .m_axil_wvalid              (m_axil_wvalid),
-            .m_axil_bready              (m_axil_bready),
-            .m_axil_araddr              (m_axil_araddr[ADDR_WIDTH-1:0]),
-            .m_axil_arprot              (m_axil_arprot[2:0]),
-            .m_axil_arvalid             (m_axil_arvalid),
-            .m_axil_rready              (m_axil_rready),
-            // Inputs
-            .clk                        (clk),
-            .rst                        (rst),
-            .s_axil_awaddr              (s_axil_awaddr[ADDR_WIDTH-1:0]),
-            .s_axil_awprot              (s_axil_awprot[2:0]),
-            .s_axil_awvalid             (s_axil_awvalid),
-            .s_axil_wdata               (s_axil_wdata[DATA_WIDTH-1:0]),
-            .s_axil_wstrb               (s_axil_wstrb[STRB_WIDTH-1:0]),
-            .s_axil_wvalid              (s_axil_wvalid),
-            .s_axil_bready              (s_axil_bready),
-            .s_axil_araddr              (s_axil_araddr[ADDR_WIDTH-1:0]),
-            .s_axil_arprot              (s_axil_arprot[2:0]),
-            .s_axil_arvalid             (s_axil_arvalid),
-            .s_axil_rready              (s_axil_rready),
-            .m_axil_awready             (m_axil_awready),
-            .m_axil_wready              (m_axil_wready),
-            .m_axil_bresp               (m_axil_bresp[1:0]),
-            .m_axil_bvalid              (m_axil_bvalid),
-            .m_axil_arready             (m_axil_arready),
-            .m_axil_rdata               (m_axil_rdata[DATA_WIDTH-1:0]),
-            .m_axil_rresp               (m_axil_rresp[1:0]),
-            .m_axil_rvalid              (m_axil_rvalid));
+  axil_register #(/*AUTOINSTPARAM*/
+          // Parameters
+          .DATA_WIDTH     (DATA_WIDTH),
+          .ADDR_WIDTH     (ADDR_WIDTH),
+          .STRB_WIDTH     (STRB_WIDTH),
+          .AW_REG_TYPE    (AW_REG_TYPE),
+          .W_REG_TYPE     (W_REG_TYPE),
+          .B_REG_TYPE     (B_REG_TYPE),
+          .AR_REG_TYPE    (AR_REG_TYPE),
+          .R_REG_TYPE     (R_REG_TYPE))
+    dut(/*AUTOINST*/
+      // Outputs
+      .s_axil_awready       (s_axil_awready),
+      .s_axil_wready        (s_axil_wready),
+      .s_axil_bresp         (s_axil_bresp[1:0]),
+      .s_axil_bvalid        (s_axil_bvalid),
+      .s_axil_arready       (s_axil_arready),
+      .s_axil_rdata         (s_axil_rdata[DATA_WIDTH-1:0]),
+      .s_axil_rresp         (s_axil_rresp[1:0]),
+      .s_axil_rvalid        (s_axil_rvalid),
+      .m_axil_awaddr        (m_axil_awaddr[ADDR_WIDTH-1:0]),
+      .m_axil_awprot        (m_axil_awprot[2:0]),
+      .m_axil_awvalid       (m_axil_awvalid),
+      .m_axil_wdata         (m_axil_wdata[DATA_WIDTH-1:0]),
+      .m_axil_wstrb         (m_axil_wstrb[STRB_WIDTH-1:0]),
+      .m_axil_wvalid        (m_axil_wvalid),
+      .m_axil_bready        (m_axil_bready),
+      .m_axil_araddr        (m_axil_araddr[ADDR_WIDTH-1:0]),
+      .m_axil_arprot        (m_axil_arprot[2:0]),
+      .m_axil_arvalid       (m_axil_arvalid),
+      .m_axil_rready        (m_axil_rready),
+      // Inputs
+      .clk            (clk),
+      .rst            (rst),
+      .s_axil_awaddr        (s_axil_awaddr[ADDR_WIDTH-1:0]),
+      .s_axil_awprot        (s_axil_awprot[2:0]),
+      .s_axil_awvalid       (s_axil_awvalid),
+      .s_axil_wdata         (s_axil_wdata[DATA_WIDTH-1:0]),
+      .s_axil_wstrb         (s_axil_wstrb[STRB_WIDTH-1:0]),
+      .s_axil_wvalid        (s_axil_wvalid),
+      .s_axil_bready        (s_axil_bready),
+      .s_axil_araddr        (s_axil_araddr[ADDR_WIDTH-1:0]),
+      .s_axil_arprot        (s_axil_arprot[2:0]),
+      .s_axil_arvalid       (s_axil_arvalid),
+      .s_axil_rready        (s_axil_rready),
+      .m_axil_awready       (m_axil_awready),
+      .m_axil_wready        (m_axil_wready),
+      .m_axil_bresp         (m_axil_bresp[1:0]),
+      .m_axil_bvalid        (m_axil_bvalid),
+      .m_axil_arready       (m_axil_arready),
+      .m_axil_rdata         (m_axil_rdata[DATA_WIDTH-1:0]),
+      .m_axil_rresp         (m_axil_rresp[1:0]),
+      .m_axil_rvalid        (m_axil_rvalid));
 
-     f_axil_slave #(/*AUTOINSTPARAM*/
-                    // Parameters
-                    .DATA_WIDTH         (DATA_WIDTH),
-                    .ADDR_WIDTH         (ADDR_WIDTH),
-                    .STRB_WIDTH         (STRB_WIDTH),
-                    .F_OSTD_MAX         (F_OSTD_MAX),
-                    .F_REQ_STALL_MAX    (F_REQ_STALL_MAX),
-                    .F_RSP_STALL_MAX    (F_RSP_STALL_MAX),
-                    .F_DELAY_MAX        (F_DELAY_MAX))
-        f_slave(/*AUTOINST*/
-                // Outputs
-                .f_axil_s_aw_outstanding(f_axil_s_aw_outstanding[$clog2(F_OSTD_MAX)-1:0]),
-                .f_axil_s_w_outstanding (f_axil_s_w_outstanding[$clog2(F_OSTD_MAX)-1:0]),
-                .f_axil_s_ar_outstanding(f_axil_s_ar_outstanding[$clog2(F_OSTD_MAX)-1:0]),
-                // Inputs
-                .clk                    (clk),
-                .rst                    (rst),
-                .s_axil_awaddr          (s_axil_awaddr[ADDR_WIDTH-1:0]),
-                .s_axil_awprot          (s_axil_awprot[2:0]),
-                .s_axil_awvalid         (s_axil_awvalid),
-                .s_axil_awready         (s_axil_awready),
-                .s_axil_wdata           (s_axil_wdata[DATA_WIDTH-1:0]),
-                .s_axil_wstrb           (s_axil_wstrb[STRB_WIDTH-1:0]),
-                .s_axil_wvalid          (s_axil_wvalid),
-                .s_axil_wready          (s_axil_wready),
-                .s_axil_bresp           (s_axil_bresp[1:0]),
-                .s_axil_bvalid          (s_axil_bvalid),
-                .s_axil_bready          (s_axil_bready),
-                .s_axil_araddr          (s_axil_araddr[ADDR_WIDTH-1:0]),
-                .s_axil_arprot          (s_axil_arprot[2:0]),
-                .s_axil_arvalid         (s_axil_arvalid),
-                .s_axil_arready         (s_axil_arready),
-                .s_axil_rdata           (s_axil_rdata[DATA_WIDTH-1:0]),
-                .s_axil_rresp           (s_axil_rresp[1:0]),
-                .s_axil_rvalid          (s_axil_rvalid),
-                .s_axil_rready          (s_axil_rready));
+   f_axil_slave #(/*AUTOINSTPARAM*/
+          // Parameters
+          .DATA_WIDTH     (DATA_WIDTH),
+          .ADDR_WIDTH     (ADDR_WIDTH),
+          .STRB_WIDTH     (STRB_WIDTH),
+          .F_OSTD_MAX     (F_OSTD_MAX),
+          .F_REQ_STALL_MAX  (F_REQ_STALL_MAX),
+          .F_RSP_STALL_MAX  (F_RSP_STALL_MAX),
+          .F_DELAY_MAX    (F_DELAY_MAX))
+    f_slave(/*AUTOINST*/
+        // Outputs
+        .f_axil_s_aw_outstanding(f_axil_s_aw_outstanding[$clog2(F_OSTD_MAX)-1:0]),
+        .f_axil_s_w_outstanding (f_axil_s_w_outstanding[$clog2(F_OSTD_MAX)-1:0]),
+        .f_axil_s_ar_outstanding(f_axil_s_ar_outstanding[$clog2(F_OSTD_MAX)-1:0]),
+        // Inputs
+        .clk          (clk),
+        .rst          (rst),
+        .s_axil_awaddr      (s_axil_awaddr[ADDR_WIDTH-1:0]),
+        .s_axil_awprot      (s_axil_awprot[2:0]),
+        .s_axil_awvalid     (s_axil_awvalid),
+        .s_axil_awready     (s_axil_awready),
+        .s_axil_wdata       (s_axil_wdata[DATA_WIDTH-1:0]),
+        .s_axil_wstrb       (s_axil_wstrb[STRB_WIDTH-1:0]),
+        .s_axil_wvalid      (s_axil_wvalid),
+        .s_axil_wready      (s_axil_wready),
+        .s_axil_bresp       (s_axil_bresp[1:0]),
+        .s_axil_bvalid      (s_axil_bvalid),
+        .s_axil_bready      (s_axil_bready),
+        .s_axil_araddr      (s_axil_araddr[ADDR_WIDTH-1:0]),
+        .s_axil_arprot      (s_axil_arprot[2:0]),
+        .s_axil_arvalid     (s_axil_arvalid),
+        .s_axil_arready     (s_axil_arready),
+        .s_axil_rdata       (s_axil_rdata[DATA_WIDTH-1:0]),
+        .s_axil_rresp       (s_axil_rresp[1:0]),
+        .s_axil_rvalid      (s_axil_rvalid),
+        .s_axil_rready      (s_axil_rready));
 
-     f_axil_master #(/*AUTOINSTPARAM*/
-                     // Parameters
-                     .DATA_WIDTH        (DATA_WIDTH),
-                     .ADDR_WIDTH        (ADDR_WIDTH),
-                     .STRB_WIDTH        (STRB_WIDTH),
-                     .F_OSTD_MAX        (F_OSTD_MAX),
-                     .F_REQ_STALL_MAX   (F_REQ_STALL_MAX),
-                     .F_RSP_STALL_MAX   (F_RSP_STALL_MAX),
-                     .F_DELAY_MAX       (F_DELAY_MAX))
-        f_master(/*AUTOINST*/
-                 // Outputs
-                 .f_axil_m_aw_outstanding(f_axil_m_aw_outstanding[$clog2(F_OSTD_MAX)-1:0]),
-                 .f_axil_m_w_outstanding(f_axil_m_w_outstanding[$clog2(F_OSTD_MAX)-1:0]),
-                 .f_axil_m_ar_outstanding(f_axil_m_ar_outstanding[$clog2(F_OSTD_MAX)-1:0]),
-                 // Inputs
-                 .clk                   (clk),
-                 .rst                   (rst),
-                 .m_axil_awaddr         (m_axil_awaddr[ADDR_WIDTH-1:0]),
-                 .m_axil_awprot         (m_axil_awprot[2:0]),
-                 .m_axil_awvalid        (m_axil_awvalid),
-                 .m_axil_awready        (m_axil_awready),
-                 .m_axil_wdata          (m_axil_wdata[DATA_WIDTH-1:0]),
-                 .m_axil_wstrb          (m_axil_wstrb[STRB_WIDTH-1:0]),
-                 .m_axil_wvalid         (m_axil_wvalid),
-                 .m_axil_wready         (m_axil_wready),
-                 .m_axil_bresp          (m_axil_bresp[1:0]),
-                 .m_axil_bvalid         (m_axil_bvalid),
-                 .m_axil_bready         (m_axil_bready),
-                 .m_axil_araddr         (m_axil_araddr[ADDR_WIDTH-1:0]),
-                 .m_axil_arprot         (m_axil_arprot[2:0]),
-                 .m_axil_arvalid        (m_axil_arvalid),
-                 .m_axil_arready        (m_axil_arready),
-                 .m_axil_rdata          (m_axil_rdata[DATA_WIDTH-1:0]),
-                 .m_axil_rresp          (m_axil_rresp[1:0]),
-                 .m_axil_rvalid         (m_axil_rvalid),
-                 .m_axil_rready         (m_axil_rready));
+   f_axil_master #(/*AUTOINSTPARAM*/
+           // Parameters
+           .DATA_WIDTH    (DATA_WIDTH),
+           .ADDR_WIDTH    (ADDR_WIDTH),
+           .STRB_WIDTH    (STRB_WIDTH),
+           .F_OSTD_MAX    (F_OSTD_MAX),
+           .F_REQ_STALL_MAX   (F_REQ_STALL_MAX),
+           .F_RSP_STALL_MAX   (F_RSP_STALL_MAX),
+           .F_DELAY_MAX     (F_DELAY_MAX))
+    f_master(/*AUTOINST*/
+         // Outputs
+         .f_axil_m_aw_outstanding(f_axil_m_aw_outstanding[$clog2(F_OSTD_MAX)-1:0]),
+         .f_axil_m_w_outstanding(f_axil_m_w_outstanding[$clog2(F_OSTD_MAX)-1:0]),
+         .f_axil_m_ar_outstanding(f_axil_m_ar_outstanding[$clog2(F_OSTD_MAX)-1:0]),
+         // Inputs
+         .clk           (clk),
+         .rst           (rst),
+         .m_axil_awaddr     (m_axil_awaddr[ADDR_WIDTH-1:0]),
+         .m_axil_awprot     (m_axil_awprot[2:0]),
+         .m_axil_awvalid    (m_axil_awvalid),
+         .m_axil_awready    (m_axil_awready),
+         .m_axil_wdata      (m_axil_wdata[DATA_WIDTH-1:0]),
+         .m_axil_wstrb      (m_axil_wstrb[STRB_WIDTH-1:0]),
+         .m_axil_wvalid     (m_axil_wvalid),
+         .m_axil_wready     (m_axil_wready),
+         .m_axil_bresp      (m_axil_bresp[1:0]),
+         .m_axil_bvalid     (m_axil_bvalid),
+         .m_axil_bready     (m_axil_bready),
+         .m_axil_araddr     (m_axil_araddr[ADDR_WIDTH-1:0]),
+         .m_axil_arprot     (m_axil_arprot[2:0]),
+         .m_axil_arvalid    (m_axil_arvalid),
+         .m_axil_arready    (m_axil_arready),
+         .m_axil_rdata      (m_axil_rdata[DATA_WIDTH-1:0]),
+         .m_axil_rresp      (m_axil_rresp[1:0]),
+         .m_axil_rvalid     (m_axil_rvalid),
+         .m_axil_rready     (m_axil_rready));
 
 endmodule
 
